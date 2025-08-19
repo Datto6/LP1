@@ -26,15 +26,23 @@ int main(void){
 
         if (lista_times[i].pontos>max){
             max=lista_times[i].pontos;
-            for (int j=0;j<3;j++){ //e executado toda vez?
-                nome_max[j]=lista_times[i].nome[j];
-            }
         }
         else if (lista_times[i].pontos<min){
             min=lista_times[i].pontos;
-            for (int j=0;j<3;j++){
+        }
+    }
+    for (int i =1;i<=3;i++){
+        if (lista_times[i].pontos==max){
+            for (int j=0;j<3;j++){ //e executado toda vez?
+                nome_max[j]=lista_times[i].nome[j];
+            }
+            printf("Entrou1\n");
+        }
+        else if (lista_times[i].pontos==min){
+            for (int j=0;j<3;j++){ //e executado toda vez?
                 nome_min[j]=lista_times[i].nome[j];
             }
+            printf("Entrou2\n");
         }
         printf("%s\n",nome_max);
     }
