@@ -17,13 +17,20 @@ int main(void){
         }
     }
     char maiores[acima];
-    for (int i=0;i<acima;i++){
+    for (int i=0;i<acima;){
         for (int j=i;j<temps;j++){
             if (temperaturas[j]>media){
-                maiores[j]=temperaturas[j];
+                maiores[i]=temperaturas[j];
+                i++;
+                if (i==acima){
+                    break;
+                }
             }
         }
     }
     printf("Media é %f, e numeros acima da média são %d\n", media,acima);
+    for (int i=0;i<acima;i++){
+        printf("%d\n",maiores[i]);
+    }
     return 0;
 }
