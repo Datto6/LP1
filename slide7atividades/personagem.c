@@ -23,6 +23,8 @@ int main(void){
     struct Personagem p1=preencheA();
     struct Personagem p2;
     preencheB(&p2);
-    printf("%d %d\n",p1.forca, p2.forca);
+    printf("As forcas do p1 e p2 respectivamente: %d %d\n",p1.forca, p2.forca);
+    printf("As energias do p1 e p2 respectivamente: %d %d\n",p1.energia, p2.energia);
+    printf("As experiencias do p1 e p2 respectivamente: %d %d\n",p1.experiencia, p2.experiencia);
     return 0;
 }
