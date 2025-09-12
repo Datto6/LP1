@@ -10,11 +10,25 @@ void concatena (char* d, char* o1, char* o2){
     int t1=tamanho(d);
     int t2=tamanho(o1);
     int t3=tamanho(o2);
-    for (int i=0;i<t2+t3;){
-        
+    int i=0;
+    for (;i<t2+t3;i++){
+        if (i<t2) {
+            *(d+i)= *(o1+i);
+        }
+        else{
+            *(d+i)= *(o2+(i-t2));
+        }
+
     }
+    *(d+i)='\0';
 }
 int main(void){
     printf("%d\n",tamanho("coisa"));
+    char teste[50];
+    char seg[10]="coisa";
+    char ter[10]="mais";
+    concatena(teste,seg,ter);
+    printf("%s\n",teste);
+    printf("%d\n",tamanho(teste));
     return 0;
 }
