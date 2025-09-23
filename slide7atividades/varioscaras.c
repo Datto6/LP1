@@ -15,7 +15,7 @@ void preencheCaba(struct caba* ptr,int id, int x,int y){ //funcao p preencher po
 void vetorpontos(struct caba* lista,int tam){  //funcao q preenche lista de pontos 
     for (int i=0;i<tam;i++){
         struct caba coisa;
-        preencheCaba(&coisa,999-i,i,tam-i);
+        preencheCaba(&coisa,50-i,i,tam-i);
         lista[i]=coisa;
     }
 }
@@ -35,21 +35,28 @@ struct caba distmax(struct caba p1, struct caba p2){  //funcao q retorna caba co
 }
 
 void escreverbonito(struct caba* lista,int quantos,int xmax,int ymax){   //funcao p display de pontos (x,y), nao terminada!!!
-    for (int i=0;i<=xmax;i++){
-        printf("%d ",i);
+    printf("   ");
+    for (int i=0;i<=xmax;i++){  //linha das coordenadas x 
+        printf(" %2d ",i);
     }
     printf("\n");
-    for (int i=0;i<=ymax;i++){
-        printf("%d ",i);
+    for (int i=0;i<=ymax;i++){ //linha de cada y 
+        printf("%2d ",i);
         for(int j=0;j<=xmax;j++){
-            for (int k=0;k<quantos;k++){
+            printf(" ");
+            int printed=0;
+            for (int k=0;k<quantos;k++){ //itera pelos personagens 
                 if (lista[k].x==j && lista[k].y==i){
-                    printf("%d",lista[k].id);
-                    lista[k]=lista[quantos-1];
+                    printf("%2d ",lista[k].id); //2 depois do % garante que tamanho de digito seja 2
+                    lista[k]=lista[quantos-1]; //remove de lista  linear sequencial desordenada
                     --quantos;
+                    printed=1;
+                    break;
                 }
             }
-            printf(" ");
+            if (!printed){
+                printf(" . ");  //caso seja vazio, garante espacamento
+            }
         }
         printf("\n");
     }
@@ -60,6 +67,6 @@ void mostracoord(struct caba* listazona,int num){
 int main(void){
     struct caba listazona[10];
     vetorpontos(listazona,10);
-    mostracoord(listazona,0);
+    mostracoord(listazona,9);
     escreverbonito(listazona,10,10,10);
 }
