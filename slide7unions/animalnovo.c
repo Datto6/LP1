@@ -1,7 +1,9 @@
 # include <stdio.h>
-
+#include <string.h>
 struct Animal{
-    int tipo; 
+    int tipo;
+    char nome_esp[255];
+    char cor_pred[255];
     union {
         struct anfibio{ //tipo=0
             int patas;
@@ -25,8 +27,10 @@ struct Animal{
         } reptil;
     }; //especia e nome do atributo union da struct animal
 };
-void preenchebicho(struct Animal* ptr,int tipo, int arr[]){ //funcao p preencher animal
+void preenchebicho(struct Animal* ptr,int tipo, int arr[],char nomeesp[],char cor[]){ //funcao p preencher animal
     ptr->tipo=tipo;
+    strncpy(ptr->nome_esp,nomeesp,255);
+    strncpy(ptr->cor_pred,cor,255);
     switch (ptr->tipo){
         case 0:
             ptr->anfibio.patas=arr[0];
@@ -56,6 +60,8 @@ void array(int* arr, int x, int y, int z){
     arr[2]=z;
 }
 void exibe(struct Animal coisa){ //nao terminei ainda, falta reptil e pormenores do printf p testar
+    printf("%s\n",coisa.nome_esp);
+    printf("%s\n",coisa.cor_pred);
     switch (coisa.tipo){
         case 0: //anfibio
             printf("Numero de patas:%d \n",coisa.anfibio.patas);
@@ -85,22 +91,23 @@ int main(void){
     struct Animal bicho6;  //aguia
     int arrayteste[3];
     array(arrayteste,5,5,5);
-
-    preenchebicho(&bicho1,0,arrayteste);
+    char nome[]="Sapo";
+    char cor[]="Verde";
+    preenchebicho(&bicho1,0,arrayteste,nome,cor);
     array(arrayteste,5,15,1);
     exibe(bicho1);
-    preenchebicho(&bicho2,2,arrayteste);
-    array(arrayteste,50,512,15);
+//     preenchebicho(&bicho2,2,arrayteste);
+//     array(arrayteste,50,512,15);
 
-    preenchebicho(&bicho3,2,arrayteste);
-    array(arrayteste,03,52,54);
+//     preenchebicho(&bicho3,2,arrayteste);
+//     array(arrayteste,03,52,54);
 
-    preenchebicho(&bicho4,3,arrayteste);
-    array(arrayteste,9,5,432);
+//     preenchebicho(&bicho4,3,arrayteste);
+//     array(arrayteste,9,5,432);
 
-    preenchebicho(&bicho5,0,arrayteste);
-    array(arrayteste,553,35,1);
+//     preenchebicho(&bicho5,0,arrayteste);
+//     array(arrayteste,553,35,1);
 
-    preenchebicho(&bicho6,1,arrayteste);
-    array(arrayteste,1,0,23);
+//     preenchebicho(&bicho6,1,arrayteste);
+//     array(arrayteste,1,0,23);
 }
