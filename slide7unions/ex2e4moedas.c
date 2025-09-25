@@ -1,5 +1,5 @@
 # include <stdio.h> 
-union pessoa {
+union pessoa {  //exercicio 2 condensado
     int CPF;
     int RG;
     char nome[255];
@@ -29,7 +29,7 @@ void exibe(struct preco coisa){
 }
 void altera(struct preco* coisa,int moeda){
     coisa->moeda=moeda;
-    printf("%d\n",coisa->moeda);
+    printf("%d\n",coisa->moeda); //isso aqui foi so p testar, releva.
 }
 int main (void){
     struct preco coisa;
