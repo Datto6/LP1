@@ -55,24 +55,28 @@ void array(int* arr, int x, int y, int z){
     arr[1]=y;
     arr[2]=z;
 }
-void exibe(struct Animal coisa){ //nao terminei ainda, falta reptil e pormenores do printf p testar
+void exibe(struct Animal coisa){
     switch (coisa.tipo){
         case 0: //anfibio
-            printf("Numero de patas:%d \n",coisa.especie.anfibio.patas); //se tirar nome especie, da p referir direto p anfibio
+            printf("Numero de patas:%d \n",coisa.especie.anfibio.patas);
             printf("Espessura da pele:%d \n",coisa.especie.anfibio.espessura);
             printf("Cauda ? %d (1 significa sim, 0 nao)\n",coisa.especie.anfibio.cauda);
             break;
         case 1: //ave
-            printf("Numero de patas:%d reais\n",coisa.especie.ave.cmbico);
-            printf("Numero de patas:%d reais\n",coisa.especie.ave.autonomia_voo);
-            printf("Numero de patas:%d reais\n",coisa.especie.ave.freqcanto);
+            printf("Cm de bico :%d \n",coisa.especie.ave.cmbico);
+            printf("Nota de autonomia de voo:%d \n",coisa.especie.ave.autonomia_voo);
+            printf("Frequencia do canto:%d \n",coisa.especie.ave.freqcanto);
             break;
         case 2: //mamifero
-            printf("Numero de patas:%d reais\n",coisa.especie.mamifero.qnt_dentes);
-            printf("Numero de patas:%d reais\n",coisa.especie.mamifero.vol_cerebr);
-            printf("Numero de patas:%d reais\n",coisa.especie.mamifero.vel_terr);
+            printf("Qntd de dentes:%d \n",coisa.especie.mamifero.qnt_dentes);
+            printf("Volume do cerebro:%d \n",coisa.especie.mamifero.vol_cerebr);
+            printf("Velocidade terrestre:%d \n",coisa.especie.mamifero.vel_terr);
             break;
         case 3: //reptil
+            printf("Venenoso?:%d \n",coisa.especie.reptil.venenoso);
+            printf("Nota de autonomia na agua:%d \n",coisa.especie.reptil.autonomia_agua);
+            printf("Espessura dos ovos:%d \n",coisa.especie.reptil.espess_ovos);
+            break;
 
     }
 }
@@ -103,4 +107,11 @@ int main(void){
 
     preenchebicho(&bicho6,1,arrayteste);
     array(arrayteste,1,0,23);
+
+    exibe(bicho1);
+    exibe(bicho2);
+    exibe(bicho3);
+    exibe(bicho4);
+    exibe(bicho5);
+    exibe(bicho6);
 }
