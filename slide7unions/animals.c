@@ -58,7 +58,7 @@ void array(int* arr, int x, int y, int z){
 void exibe(struct Animal coisa){ //nao terminei ainda, falta reptil e pormenores do printf p testar
     switch (coisa.tipo){
         case 0: //anfibio
-            printf("Numero de patas:%d \n",coisa.especie.anfibio.patas);
+            printf("Numero de patas:%d \n",coisa.especie.anfibio.patas); //se tirar nome especie, da p referir direto p anfibio
             printf("Espessura da pele:%d \n",coisa.especie.anfibio.espessura);
             printf("Cauda ? %d (1 significa sim, 0 nao)\n",coisa.especie.anfibio.cauda);
             break;
