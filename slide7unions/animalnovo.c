@@ -25,7 +25,7 @@ struct Animal{
             int autonomia_agua;
             int espess_ovos;
         } reptil;
-    }; //especia e nome do atributo union da struct animal
+    }; //especie eh nome do atributo union da struct animal, antes eu usava coisa.especie.reptil, mas vi que da p ir direto pra coisa.reptil
 };
 void preenchebicho(struct Animal* ptr,int tipo, int arr[],char nomeesp[],char cor[]){ //funcao p preencher animal
     ptr->tipo=tipo;
