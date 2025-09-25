@@ -69,27 +69,86 @@ void preenchebicho(struct Animal* ptr,int tipo, int arr[]){ //funcao p preencher
 //     scanf("%d",&ptr->fraude);
 //     scanf("%s",ptr->nome);
 // }
-void preencheSurf(struct Surfista* ptr, int arr[],char nome[]){
+void preencheSurf(struct Surfista* ptr, int* arr,char nome[]){
     ptr->borda=arr[0];
     ptr->aereo=arr[1];
     ptr->tubo=arr[2];
     ptr->tamanho_onda=arr[3];
-    ptr->fraude=arr;
-    strncpy(ptr->nome,nome,255);
+    ptr->fraude=arr[4];
+    strncpy(ptr->nome,nome,7);
 }
+
 struct entidade{
     int classe;
     union{
-        struct Surfista;
-        struct Animal;
-    } conteudo;
+        struct Surfista surfista; //classe 0
+        struct Animal animal;  //classe 1
+    };
 };
 
+void ExibeAnimal(struct Animal coisa){ //nao terminei ainda, falta reptil e pormenores do printf p testar
+    switch (coisa.tipo){
+        case 0: //anfibio
+            printf("Numero de patas:%d \n",coisa.especie.anfibio.patas);
+            printf("Espessura da pele:%d \n",coisa.especie.anfibio.espessura);
+            printf("Cauda ? %d (1 significa sim, 0 nao)\n",coisa.especie.anfibio.cauda);
+            break;
+        case 1: //ave
+            printf("Cm de bico:%d \n",coisa.especie.ave.cmbico);
+            printf("Autonomia de voo:%d \n",coisa.especie.ave.autonomia_voo);
+            printf("Frequencia de canto:%d \n",coisa.especie.ave.freqcanto);
+            break;
+        case 2: //mamifero
+            printf("Qntd de dentes%d \n",coisa.especie.mamifero.qnt_dentes);
+            printf("Volume cerebral:%d \n",coisa.especie.mamifero.vol_cerebr);
+            printf("Velocidade terrestre:%d \n",coisa.especie.mamifero.vel_terr);
+            break;
+        case 3: //reptil
+            printf("Venenoso escala%d \n",coisa.especie.reptil.venenoso);
+            printf("Autonomia na agua:%d \n",coisa.especie.reptil.autonomia_agua);
+            printf("Espessura dos ovos:%d \n",coisa.especie.reptil.espess_ovos);
+            break;
+    }
+}
+
+void ExibeSurf(struct Surfista cara){
+    printf("Seu surfe de borda é nota %d\n", cara.borda);
+    printf("Seus aéreos são nota %d\n", cara.aereo);
+    printf("Seus tubos são nota %d\n", cara.tubo);
+    printf("Sua seleção de ondas é %d\n", cara.tamanho_onda);
+    if (cara.fraude){
+        printf("Ele é uma fraude\n");
+    }
+    else{
+        printf("Ele não é uma fraude\n");
+    }
+    printf("seu nome é %s\n", cara.nome);
+}
+
 void preencheEntidade(struct entidade* ptr, int classe,int arr[],char nome[],int tipo){
+    ptr->classe=classe;
     if(ptr->classe==0){
-        preencheSurf(ptr,arr,nome);
+        preencheSurf(&(ptr->surfista),arr,nome);
     }
     if (ptr->classe==1){
-        preenchebicho(ptr,tipo,arr);
+        preenchebicho(&(ptr->animal),tipo,arr);
     }
+}
+void ExibeEntidade(struct entidade coisa){
+    if (coisa.classe){
+        ExibeAnimal(coisa.animal);
+    }
+    else {
+        ExibeSurf(coisa.surfista);
+    }
+}
+int main(void){
+    struct entidade teste;
+    int classe=0;
+    int arr[5]={1,2,3,4,0};
+    char nome[]="Medina";
+    int tipo=0;
+    preencheEntidade(&teste,classe,arr,nome,tipo);
+    ExibeEntidade(teste);
+    return 0;
 }
