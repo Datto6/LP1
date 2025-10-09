@@ -34,7 +34,7 @@ struct caba distmax(struct caba p1, struct caba p2){  //funcao q retorna caba co
     }
 }
 
-void escreverbonito(struct caba* lista,int quantos,int xmax,int ymax){   //funcao p display de pontos (x,y), nao terminada!!!
+void escreverbonito(struct caba* lista,int quantos,int xmax,int ymax){   //funcao que da display de personagens colocando seu ID
     printf("   ");
     for (int i=0;i<=xmax;i++){  //linha das coordenadas x 
         printf(" %2d ",i);
