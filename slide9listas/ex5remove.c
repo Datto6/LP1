@@ -31,17 +31,18 @@ int contem(Caixa* coisa,int valor){
     return 0; //nao achou, logo nao contem
 }
 
-Caixa* removeLista(Caixa* L,int valor){
-    Caixa* p=L;
+Caixa* removeLista(Caixa** L,int valor){
+    Caixa* p=*L;
     Caixa* pAnt=NULL;
     while(p!=NULL){
         if(p->valor==valor){
             if(pAnt==NULL){
-                L=p->prox;
+                *L=p->prox;
             }
             else{
                 pAnt->prox=p->prox;
             }
+            break;
         }
         else{
             pAnt=p;
@@ -49,7 +50,7 @@ Caixa* removeLista(Caixa* L,int valor){
         }
 
     }
-    return L;
+    return *L;
 }
 int main(void){
     Caixa coisa1, coisa2, coisa3, coisa4, coisa5; //declaracoes de caixas
@@ -62,7 +63,7 @@ int main(void){
 
     exibe(cabeca); //exibe antes
     printf("%d\n",contem(cabeca,9)); //deve retornar 1, pois 9 ainda ta la dentro
-    cabeca=removeLista(cabeca,9);
+    cabeca=removeLista(&cabeca,9);
     exibe(cabeca); //exibe depois de remocao
     printf("%d\n",contem(cabeca,9)); //era para retornar 0, pois 9 foi removido
     coisa3.prox=cabeca; //coloca efetivamente o terceiro como o primeiro, seu prox e a atual cabeca
