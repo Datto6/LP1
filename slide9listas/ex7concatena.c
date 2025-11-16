@@ -31,7 +31,6 @@ int contem(Caixa* coisa,int valor){
     return 0; //nao achou, logo nao contem
 }
 Caixa* concatena (struct Caixa* l1, struct Caixa* l2) { //concatena duas listas encadeadas
-	/* insert your code here */
 	Caixa* p=l1;
 	Caixa* retorno=NULL;
 	while (p->prox!=NULL){
