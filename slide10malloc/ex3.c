@@ -16,6 +16,10 @@ void InsereFinal(Caixa ** L, int e, Caixa ** u) {
 	}
 	*u = novo;  //atualiza o novo ultimo da lista 
 }
+void InsereInicioEnc(Caixa ** L, int e) { //funcoes auxiliares 
+	Caixa * novo = (Caixa *) malloc(sizeof(Caixa));
+	novo->valor = e; novo->prox = *L; *L = novo; 
+}
 void exibe(Caixa* coisa){
     Caixa* p=coisa;
     while(p!=NULL){ //enquanto nao chegou ao final
@@ -48,6 +52,8 @@ int main(void){
         p=p->prox;
         indice++;
     }
+    exibe(cabeca);
+    InsereInicioEnc(&cabeca,9);
     exibe(cabeca);
     return 0;
 }
