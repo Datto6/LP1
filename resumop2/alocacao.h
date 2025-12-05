@@ -1,4 +1,5 @@
 #include "constantes.h"
+#include "baixonivel.h"
 #ifndef ALOCACAO_H
 #define ALOCACAO_H
 
@@ -8,17 +9,17 @@ FILE* abrirParada(int topico){
                 return fopen("tipagem.txt","rb");
                 break;
             case funcoes:
-                return fopen("tipagem.txt","rb");
+                return fopen("funcoes.txt","rb");
             case ponteiros:
-                return fopen("tipagem.txt","rb");
+                return fopen("ponteiros.txt","rb");
             case compostos:
-                return fopen("tipagem.txt","rb");
+                return fopen("compostos.txt","rb");
             case arquivos:
-                return fopen("tipagem.txt","rb");
+                return fopen("arquivos.txt","rb");
             case encadeadas:
-                return fopen("tipagem.txt","rb");
+                return fopen("encadeadas.txt","rb");
             case alocacao:
-                return fopen("tipagem.txt","rb");
+                return fopen("alocacao.txt","rb");
             deafult:
                 return NULL;
                 break;
@@ -104,15 +105,21 @@ void MostrarTopico(int topico){
         }
         // assert(0 && "cheguei ate aqui, li uma informacao ou topico");
     }
-    // assert(0 && "cheguei ate aqui13");    
-    p=topicos->prox; q=informacoes->prox;
-    printf("%s",p->nome);
-        // assert(0 && "cheguei ate o final porra");
-
-    printf("%s\n",q->nome);
-    puts("");//fins esteticos
-    // assert(0 && "para que eu quero ver essa printada da info");
-
+    // assert(0 && "cheguei ate aqui13");
+    indice=exibeTopicos(topicos)-1;
+    p=topicos; q=informacoes;
+    int j=0;
+    while(p!=NULL && q!=NULL){
+        if(j==indice){
+            printf("%s ",p->nome);
+            printf("%s ",q->nome);
+            break;
+        }
+        j++;
+        p=p->prox;
+        q=q->prox;
+    }
+    puts("");
     fclose(arq);
 }
 
