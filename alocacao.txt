@@ -1,0 +1,5 @@
+$1.Malloc:@ void* malloc(size_t size) - Retorna um ponteiro void*, e nao exige typecast, o proprio C ja converte - Ele aloca um 
+amontado de size bytes, SEM NENHUM IDENTIFICADOR, e retorna um ponteiro pra essa posicao~
+$2.free:@ void free(void * ptr) - Nao retorna nada, mas sinaliza pro malloc que a memoria que o ptr estava se referindo esta livre p ser usada~
+$3.Pilha:@ A parte que o compilador cuida da memoria, dinamica, regida pela pilha de execucao. No final da memoria.~
+$4.Heap:@ A parte que voce pode manipular com malloc e free, cresce no sentido contrario da pilha, e ta na base da memoria, logo depois da parte estatica~
