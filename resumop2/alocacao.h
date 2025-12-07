@@ -113,6 +113,15 @@ void MostrarTopico(int topico){
         q=q->prox;
     }
     puts("");
+        
+    p=topicos; q=informacoes;
+    while(p!=NULL && q!=NULL){ //itera sobre encadeadas para desalocar memoria anteriormente usada
+        No* pAnt=p; No* qAnt=q;
+        p=p->prox;
+        q=q->prox;
+        free(pAnt->nome);free(qAnt->nome);
+        free(pAnt);free(qAnt);
+    }
     fclose(arq);
 }
 
