@@ -9,7 +9,7 @@ typedef struct Caixa {
 void InsereFinal(Caixa ** L, int e, Caixa ** u) {  
 	Caixa * novo = (Caixa *) malloc(sizeof(Caixa)); //aloca as caixas aqui
 	novo->valor = e; novo->prox = NULL; 
-	if (*u == NULL) {
+	if (*u == NULL) { //*u porque u eh um ponteiro p um ponteiro, to tentando mudar u fora do funcao, com u ja sendo um ponteiro
 		*L = novo; //se o ultimo nao existir, comeca lista ali
 	} else {
 		(*u)->prox = novo; //ultimo agora e o novo 
@@ -39,7 +39,7 @@ int main(void){
         printf("Insere ai seu numero p lista, digite -1 p parar ");
         scanf("%d",&input);
         if(input==-1) break;
-        InsereFinal(&cabeca,input,&ultimo);
+        InsereFinal(&cabeca,input,&ultimo); //&cabeca porque eh o equivalente a passar por referencia em C++
         printf("\n");
     }
     exibe(cabeca);
