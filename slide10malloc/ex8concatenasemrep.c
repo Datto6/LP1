@@ -33,18 +33,18 @@ void InsereInicioEnc(Caixa ** L, int e) { //funcoes auxiliares
 int Busca(Caixa* L, int x){
     Caixa* p=L;
     while(p!=NULL){
-        if(p->valor==x){
+        if(p->valor==x){ //achou o elemento, retorna true
             return 1;
         }
         p=p->prox;
     }
-    return 0;
+    return 0; //se sobreviveu ao loop, quer dizer que elemento nao ta dentro da lista
 }
 Caixa* removeLista(Caixa* L,int valor){
     Caixa* p=L;
     Caixa* pAnt=NULL;
     while(p!=NULL){
-        if(p->valor==valor){
+        if(p->valor==valor){ //achou valor
             if(pAnt==NULL){
                 L=p->prox;
             }
@@ -53,7 +53,7 @@ Caixa* removeLista(Caixa* L,int valor){
             }
             break;
         }
-        else{
+        else{ //nao achou, segue iterando sobre a lista
             pAnt=p;
             p=p->prox;
         }
@@ -65,13 +65,13 @@ Caixa * Concatena0rep(Caixa * L1, Caixa * L2) { //concatena duas listas encadead
 	struct Caixa * p=L1;
 	Caixa * L=NULL;
 	Caixa * u=NULL;
-	while (p!=NULL){
+	while (p!=NULL){ //insere L1 inteira
 		InsereFinal(&L,p->valor,&u);
 		p=p->prox;
 	}
 	p=L2;
 	while (p!=NULL){
-		if(!Busca(L1,p->valor)){
+		if(!Busca(L1,p->valor)){ //se nao achar esse valor de L2 em L1, pode inserir na lista de saida
             InsereFinal(&L,p->valor,&u);
 	    }
         p=p->prox;
