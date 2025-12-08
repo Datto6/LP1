@@ -78,7 +78,24 @@ Caixa * Concatena0rep(Caixa * L1, Caixa * L2) { //concatena duas listas encadead
     }
     return L;
 }
+//versao alternativa 
 
+Caixa * Concatena0rep(Caixa * L1, Caixa * L2) { //concatena duas listas encadeadas, sem repeticoes
+	struct Caixa * p=L1;
+	Caixa * L=NULL;
+	Caixa * u=NULL;
+	while (p!=NULL){ //insere L1 inteira
+        InsereFinal(&L,p->valor,&u); 
+		removeLista(L2,p->valor); //remove esse valor de L2, se existir
+		p=p->prox;
+	}
+	p=L2;
+	while (p!=NULL){
+        InsereFinal(&L,p->valor,&u); //insere L2 toda, mas como ja tirei todas que estavam em L1, n tem kao nao
+        p=p->prox;
+    }
+    return L;
+}
 
 
 int main(void){
