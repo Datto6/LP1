@@ -36,3 +36,16 @@ $8.fgetc:@ int fgetc(FILE *pointer)
 ->Le um char no arquivo pointer
 ->Retorna o char lido no arquivo, na atual agulha do FILE*, e EOF caso a leitura n deu certo
 ->Tambem move a agulha de leitura/escrita do arquivo +1 p frente  ~
+
+$9.fseek:@ int fseek(FILE *pointer, long int offset, int position)
+->Bota a agulha de leitura do arquivo na posicao offset+position
+->Position pode ser SEEK_SET, SEEK_END, ou SEEK_CUR, inicio, fim, posicao atual respectivamente
+->Pointer eh um ponteiro pro arquivo ~
+
+$10.ftell:@ long ftell(FILE *stream)
+->Retorna o long posicao da agulha no arquivo atual
+->Retorna -1 se erro ocorre, e so ocorre erro se tiver em posicao menor que o inicio do arquivo
+->Se tiver passado do final do arquivo, vai falar coisa errada, mas nao da p saber
+->Da p saber tamanho de arquivo usando fseek ate SEEK_END com offset 0 e depois ftell, mas se fizer SEEK_END +100 vai dar o tamanho do arquivo errado~
+
+$11.EOF:@ EOF==-1 : acontece pois ele sai do limite de int, que vai de 0-255, entao chegou ao final de arquivo ou deu erro.~
