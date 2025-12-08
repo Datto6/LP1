@@ -7,7 +7,7 @@ typedef struct Pessoa {
     int  peso;
 } Pessoa;
 
-void preenchePessoa(int idade, char* nome, int peso, Pessoa* ptr){
+void preenchePessoa(int idade, char* nome, int peso, Pessoa* ptr){ //preenche um struct pessoa, usando o ptr
     ptr->idade=idade;
     strncpy(ptr->nome,nome,64);
     ptr->peso=peso;
@@ -22,7 +22,7 @@ void exibePessoa(Pessoa coisa){
 void escrevePessoa(Pessoa coisa,FILE* f){
     int tamanho=strlen(coisa.nome);
     fwrite(&coisa.idade,sizeof(int),1,f);
-    fwrite(&tamanho,sizeof(int),1,f);
+    fwrite(&tamanho,sizeof(int),1,f); //armazena tamanho logo depois da idade, para determinar quanto eu leio
     fwrite(coisa.nome,sizeof(char),tamanho,f); //sem isso, ele ia ler 64 chars mesmo se o string fosse 8 chars
     fwrite(&coisa.peso,sizeof(int),1,f); 
 }
@@ -31,8 +31,9 @@ Pessoa lePessoa(FILE* f){
     int tamanho; //limita o numero de char que le de string
     fread(&coisa.idade,sizeof(int),1,f);
     fread(&tamanho,sizeof(int),1,f);
-    fread(coisa.nome,sizeof(char),tamanho,f);
+    fread(coisa.nome,sizeof(char),tamanho,f); //le um char tamanho vezes 
     fread(&coisa.peso,sizeof(int),1,f);
+    coisa.nome[tamanho]='\0'; //se nao o "%s" da ruim, tem que colocar no ultimo ponto
     return coisa;
 }
 int main(void){
@@ -44,15 +45,15 @@ int main(void){
     if (ler){
         for (int i=0;i<3;i++){
             Pessoa coisa;
-            vec[i]=coisa;
             int idade;
             int peso;
             char nome[64];
             scanf("%d",&idade);
             scanf("%d",&peso);
             scanf("%s",nome);
-            preenchePessoa(idade,nome,peso,vec+i);
-            escrevePessoa(vec[i],arquivo);
+            preenchePessoa(idade,nome,peso,&coisa); //preenche o coisa
+            vec[i]=coisa; //copia o coisa no vec[i]
+            escrevePessoa(vec[i],arquivo); //escreve ele no arquivo
         }
     }
     else{
