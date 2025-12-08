@@ -16,21 +16,21 @@ int main(void){
             assert(0);
         }
         
-        idadevisivel[i]=(char) idade[i];
+        idadevisivel[i]=(char) idade[i]; //copm retorno de fgetc eh um int, tenho que transformar para um caractere de novo com esse typecast
     }
-    idadevisivel[3]='\0';
+    idadevisivel[3]='\0'; //byte terminador de string
 
     fseek(arq,23*(linha-1)+19,SEEK_SET);
     for(int i=0;i<2;i++){
         estado[i]=fgetc(arq);
         if (estado[i]==EOF){
-            printf("Registro nao encontrado\n");
-            assert(0);
+            printf("Registro nao encontrado\n"); 
+            assert(0); //como isso sempre da falso, se ele chegar aqui ja da pau no programa
         }
         estadovisivel[i]=(char) estado[i];
     }
     printf("%s\n",idadevisivel);
-    printf("%s\n",estadovisivel);
+    printf("%s\n",estadovisivel); //%s pois ja botei o '\0'
     fclose(arq);
     return 0;
 }
