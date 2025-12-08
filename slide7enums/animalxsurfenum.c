@@ -4,11 +4,9 @@ enum Entidade{
     surfista,
     animal
 };
-enum Especie{
-    anfibio,
-    ave,
-    mamifero,
-    reptil
+enum Especie{ //0,1,2,3,4....
+    anfibio, ave,
+    mamifero, reptil
 };
 enum Afirmacao{
     nao,
@@ -25,7 +23,7 @@ struct Surfista{
 
 struct Animal{
     int tipo;
-    char nomeesp[255];
+    char nomeesp[255]; //string de no maximo 254 caracteres
     char cor[255];
     union {
         struct anfibio{ //tipo=0
@@ -147,7 +145,7 @@ void preencheEntidade(struct entidade* ptr, int classe,int arr[],char nome[],int
     }
 }
 void ExibeEntidade(struct entidade coisa){
-    if (coisa.classe){
+    if (coisa.classe){ //se classe for de animal, usar exibeanimal
         ExibeAnimal(coisa.animal);
     }
     else {
@@ -171,4 +169,5 @@ int main(void){
     preencheEntidade(&sapoteste,animal,arrsapo,nomesapo,anfibio,cor);
     ExibeEntidade(sapoteste);
     return 0;
+
 }
