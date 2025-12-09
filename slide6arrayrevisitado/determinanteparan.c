@@ -28,8 +28,8 @@ int determinante (int* arr, int dimensao){
     for (int f = 0; f < dimensao; f++){
         int elemento=*(arr+f); // ==arr[0][f], aritmetica de ponteiros com i==0
         // Cofator de arr[0][f](sempre expandindo na 1 linha)
-        cofator(arr, temp, 0, f, dimensao);
-        D += sinal * elemento* determinante(temp, dimensao - 1);
+        cofator(arr, temp, 0, f, dimensao); //pega o cofator para o elemento arr[0][f], coloca ele no array temporario
+        D += sinal * elemento* determinante(temp, dimensao - 1); //calcula o determinante desse cofator
         // Alterna sinal
         sinal = -sinal;
     }
