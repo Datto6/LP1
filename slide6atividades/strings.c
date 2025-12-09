@@ -4,7 +4,7 @@ int tamanho (char* str){
     while(str[i]!='\0'){
         i++;
     }
-    return i;
+    return i; //i nao contem o byte terminador, output eh igual ao strlen
 }
 void concatena (char* d, char* o1, char* o2){
     int t1=tamanho(d);
@@ -13,13 +13,16 @@ void concatena (char* d, char* o1, char* o2){
     int i=0;
     for (;i<t2+t3;i++){
         if (i<t2) {
-            *(d+i)= *(o1+i);
+            *(d+i)= *(o1+i); //adiciona char do string primeiro, do o1 
+            //d[i]=o1[i]
         }
         else{
-            *(d+i)= *(o2+(i-t2));
+            *(d+i)= *(o2+(i-t2)); //adiciona char do segundo string, do o2
+            //d[i]=o2[i-t2]
         }
 
     }
+    //d[i]='\0'
     *(d+i)='\0';
 }
 int main(void){
